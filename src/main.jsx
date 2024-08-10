@@ -13,6 +13,7 @@ import About from "./Pages/About/About";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
+import AuthProvider from "./Components/Provider/AuthProvider";
 
 
 const url = 'https://my-json-server.typicode.com/faarhaan10/react-sunglasses/sunglasses';
@@ -56,6 +57,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <AuthProvider>
     <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
