@@ -1,15 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
+  const Navigate = useNavigate();
   const handleCreateUser = (e) => {
     e.preventDefault();
 
     // get values from input field
+    const name = e.target.name.value;
     const email = e.target.email.value;
+    const photo = e.target.photo.value;
     const password = e.target.password.value;
 
     // password validate
@@ -18,14 +21,18 @@ const Register = () => {
         return
     }
     createUser(email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user)
+    .then(() => {
         toast.success("user created successfully")
+        Navigate("/")
+        updateUserProfile(name, photo)
+        .then(()=>{
+          Navigate('/')
+        })
+        .catch(err => toast.error(err.message))
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage)
+        console.error(errorMessage)
       });
     
 
@@ -73,7 +80,7 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
-                  name="image"
+                  name="photo"
                   placeholder="image url"
                   className="input input-bordered"
                 />
