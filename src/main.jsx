@@ -12,6 +12,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
 import AuthProvider from "./Provider/AuthProvider";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import Contact from "./Pages/Contact/Contact";
 
 const url =
   "https://my-json-server.typicode.com/faarhaan10/react-sunglasses/sunglasses";
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact/>
       },
       {
         path: "/login",

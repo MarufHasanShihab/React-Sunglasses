@@ -2,12 +2,29 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Menus = () => {
-    const links = ['products', 'about', 'contact', 'blog'];
+    const links = [
+        {
+            name: "Home",
+            path: "/"
+        },
+        {
+            name: "Products",
+            path: "/products"
+        },
+        {
+            name: "About",
+            path: "/about"
+        },
+        {
+            name: "Contact",
+            path: "/contact"
+        }
+    ];
     return (
         <>
             {
                 links.map(link => <li key={link}>
-                    <Link to={`/${link}`} className="btn btn-sm  btn-ghost">{link}</Link>
+                    <Link to={link.path} className="btn btn-sm  btn-ghost">{link.name}</Link>
                 </li>)
             }
         </>
